@@ -1,7 +1,8 @@
 var data, i;
 
-function getanswer(t) {
+function getmovie(t) {
     $.get("https://www.omdbapi.com/?s=" + t + "&type=movie&apikey=ba1f4581", function (rawdata) {
+        // recieves the data from the omdb api
         var rawstring = JSON.stringify(rawdata);
         data = JSON.parse(rawstring);
         var title = data.Search[0].Title;
@@ -10,39 +11,25 @@ function getanswer(t) {
         // These few lines of comments: can be used to add pictures of each movies
 
         // var imdburl = "https://www.imdb.com/title/" + data.Search[0].imdbID + "/";
-
-        // var posterurl = data.Search[0].Poster;
-        // document.getElementById('nominate');
-        // .style.visibility = "visible";
+        // var posterurl = data.Search[0].Poster;     
     
-        // var theTitle = document.createElement("h5")
-        // var theYear = document.createElement("p").innerHTML=`${year}`; 
-    
-        // document.getElementById("answer").appendChild(theTitle);
-        // document.getElementById("answer").appendChild(theYear);
-        
-        //Answers
-        nomList = document.getElementById('answer');
+        //outputs the result of the data
+        nomList = document.getElementById('movie');
         nomList.innerHTML = `<br><h5>${title}</h5><p>(${year})`;
 
         var nominate = document.createElement("button");
         var bttName = document.createTextNode("Nominate");
         nominate.appendChild(bttName);
-        document.getElementById("answer").appendChild(nominate);
+        document.getElementById("movie").appendChild(nominate);
 
         //gets all the element li under the ol element
         var parent = document.getElementById("nom");
-        var allLi = parent.getElementsByTagName("li");
         var allBut = parent.getElementsByTagName("button");
 
-        //addNomnations
+        //add Nomnations: includes removing the nomination button and adding  
         nominate.addEventListener("click", addNominations);
-        // if (nomList.textContent === this.textContent){
-        //     return alert("This movie is already on your nomination list");
-        // }
-        NodeList
-
         function addNominations() {
+            // gives an alert if the list is more than 5
             if(parent.children.length > 4){
                 return alert("You are only allowed to nominate at most 5 movies");
             }
