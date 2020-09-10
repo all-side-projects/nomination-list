@@ -79,8 +79,6 @@ button, .movie>button {
 ol{
     padding-top: 10px;    
     margin-left: 10%;
-    overflow: scroll;
-    
 }
 
 li {
